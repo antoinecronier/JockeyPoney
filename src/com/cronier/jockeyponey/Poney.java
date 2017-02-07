@@ -73,7 +73,7 @@ public class Poney implements IDao<Poney> {
 					"SELECT * FROM poney;");
 			while (resultSet.next()) {
 				Poney poney = new Poney(resultSet.getInt("poney_id"),
-						resultSet.getString("name"), resultSet.getInt("weight"));
+						resultSet.getString("poney_name"), resultSet.getInt("poney_weight"));
 				poneys.add(poney);
 			}
 		} catch (SQLException e) {
@@ -91,8 +91,8 @@ public class Poney implements IDao<Poney> {
 					"SELECT * FROM poney WHERE poney.poney_id = " + id + ";");
 			while (resultSet.next()) {
 				this.id = resultSet.getInt("poney_id");
-				this.name = resultSet.getString("name");
-				this.weight = resultSet.getInt("weight");
+				this.name = resultSet.getString("poney_name");
+				this.weight = resultSet.getInt("poney_weight");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

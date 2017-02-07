@@ -131,16 +131,31 @@ public class Courir {
 				this.course.setDateCourse(resultSet.getDate("dateCourse"));
 			}
 
-			ResultSet resultSetList = MySQLAccess.getInstance().resultQuery(
-					"SELECT jockey_id, lastname, firstname,  FROM courir, jockey, poney "
-							+ "WHERE courir.id_Course = " + courseId + ";");
-			while (resultSetList.next()) {
-				map.put(new Jockey(resultSet.getInt("jockey_id"), resultSet
-						.getString("jockey_lastname"), resultSet
-						.getString("jockey_firstname"), resultSet.getInt("jockey_weight")),
-						new Poney(resultSet.getInt("poney_id"), resultSet
-								.getString("poney_name"), resultSet.getInt("poney_weight")));
+			ResultSet resultSet1 = MySQLAccess.getInstance().resultQuery(
+					"SELECT * FROM courir " + "WHERE courir.id_Course = "
+							+ courseId + ";");
+			while (resultSet1.next()) {
+				Jockey jockey = new Jockey();
+				Poney poney = new Poney();
+
+				jockey.getById(resultSet1.getInt("id_Jockey"));
+				poney.getById(resultSet1.getInt("id_Poney"));
+
+				map.put(jockey,poney);
 			}
+			/*
+			 * "SELECT jockey_id, jockey_lastname, jockey_firstname, jockey_weight,"
+			 * +
+			 * " poney_id, poney_name, poney_weight FROM courir, jockey, poney "
+			 * + "WHERE courir.id_Course = " + courseId + "GROUP BY " + ";");
+			 * while (resultSetList.next()) { map.put(new
+			 * Jockey(resultSet.getInt("jockey_id"), resultSet
+			 * .getString("jockey_lastname"), resultSet
+			 * .getString("jockey_firstname"), resultSet
+			 * .getInt("jockey_weight")), new
+			 * Poney(resultSet.getInt("poney_id"), resultSet
+			 * .getString("poney_name"), resultSet .getInt("poney_weight"))); }
+			 */
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

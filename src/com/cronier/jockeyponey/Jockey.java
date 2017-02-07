@@ -88,9 +88,9 @@ public class Jockey implements IDao<Jockey> {
 					"SELECT * FROM jockey;");
 			while (resultSet.next()) {
 				Jockey jockey = new Jockey(resultSet.getInt("jockey_id"),
-						resultSet.getString("lastname"),
-						resultSet.getString("firstname"),
-						resultSet.getInt("weight"));
+						resultSet.getString("jockey_lastname"),
+						resultSet.getString("jockey_firstname"),
+						resultSet.getInt("jockey_weight"));
 				jockeys.add(jockey);
 			}
 		} catch (SQLException e) {
@@ -108,9 +108,9 @@ public class Jockey implements IDao<Jockey> {
 					"SELECT * FROM jockey WHERE jockey.jockey_id = " + id + ";");
 			while (resultSet.next()) {
 				this.id = resultSet.getInt("jockey_id");
-				this.firstname = resultSet.getString("firstname");
-				this.lastname = resultSet.getString("lastname");
-				this.weight = resultSet.getInt("weight");
+				this.firstname = resultSet.getString("jockey_firstname");
+				this.lastname = resultSet.getString("jockey_lastname");
+				this.weight = resultSet.getInt("jockey_weight");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

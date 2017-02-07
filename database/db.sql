@@ -12,9 +12,9 @@ use jockeyponey
 
 CREATE TABLE Jockey(
         jockey_id Int NOT NULL ,
-        firstname Varchar (25) ,
-        lastname  Varchar (25) ,
-        weight    Int ,
+        jockey_firstname Varchar (25) ,
+        jockey_lastname  Varchar (25) ,
+        jockey_weight    Int ,
         PRIMARY KEY (jockey_id )
 )ENGINE=InnoDB;
 
@@ -25,8 +25,8 @@ CREATE TABLE Jockey(
 
 CREATE TABLE Poney(
         poney_id Int NOT NULL ,
-        name   Varchar (25) ,
-        weight Int ,
+        poney_name   Varchar (25) ,
+        poney_weight Int ,
         PRIMARY KEY (poney_id )
 )ENGINE=InnoDB;
 
